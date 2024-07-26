@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ticket;
 
+use App\Enum\TicketStatusEnum;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AddReplyRequest;
 use App\Models\Ticket;
-use Illuminate\Http\Request;
 
 class AddReplyController extends Controller
 {
@@ -17,6 +18,9 @@ class AddReplyController extends Controller
                     'content' => $request->reply,
                     'user_id' => auth()->id(),
                 ]);
+
+            $ticket->status = TicketStatusEnum::AWAITING_CUSTOMER;
+            $ticket->save();
 
             return redirect()
                 ->route('tickets.edit', ['ticket' => $ticket]);
