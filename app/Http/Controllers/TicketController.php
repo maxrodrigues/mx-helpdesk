@@ -6,6 +6,7 @@ use App\Enum\TicketPriorityEnum;
 use App\Models\Reply;
 use App\Models\Ticket;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -36,10 +37,17 @@ class TicketController extends Controller
 
     public function edit($id)
     {
-        $ticket = Ticket::find($id);
-        $replies = Reply::with('user')->where('ticket_id', $ticket->id)->get();
+        try {
+            $me = auth()->user();
+            $ticket = Ticket::with('user')->find($id);
+            $agent = $ticket->user;
 
-        return view('pages.tickets.edit', compact('ticket', 'replies'));
+            $replies = Reply::with('user')->where('ticket_id', $ticket->id)->get();
+
+            return view('pages.tickets.edit', compact('ticket', 'replies', 'agent', 'me'));
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     public function update(Request $request, Ticket $ticket)
