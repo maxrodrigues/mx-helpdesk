@@ -36,7 +36,11 @@
                     Tikets
                 </li>
             </a>
-{{--            <li class="p-3 cursor-pointer w-32 text-center hover:border-b-4 hover:-mb-1 border-b-blue-700">Users</li>--}}
+            <a href="{{ route('customers.index') }}">
+                <li class="p-3 cursor-pointer w-32 text-center hover:border-b-4 hover:-mb-1 border-b-blue-700">
+                    Clientes
+                </li>
+            </a>
 {{--            <li class="p-3 cursor-pointer w-32 text-center hover:border-b-4 hover:-mb-1 border-b-blue-700">My Tickets</li>--}}
 {{--            <li class="p-3 cursor-pointer w-32 text-center hover:border-b-4 hover:-mb-1 border-b-blue-700">Quick Access</li>--}}
         </ul>
