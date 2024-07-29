@@ -9,7 +9,10 @@ class AddCustomerIdColumnAtTicket extends Migration
     public function up(): void
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->foreignId('customer_id')->after('user_id')->constrained('customers');
+            $table->foreignId('customer_id')
+                ->after('user_id')
+                ->nullable()
+                ->constrained('customers');
         });
     }
 }

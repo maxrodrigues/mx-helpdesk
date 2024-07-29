@@ -23,7 +23,7 @@
                     <div class="flex justify-between">
                         <span>{{ $customer->name }}</span>
                         <span>
-                            <a href="#">
+                            <a href="{{ route('tickets.remove-requester', ['ticket' => $ticket]) }}">
                                 <i class="fa-solid fa-xmark text-red-700"></i>
                             </a>
                         </span>
