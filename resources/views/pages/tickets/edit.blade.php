@@ -11,11 +11,27 @@
             <div>
                 <div class="flex justify-between items-end">
                     <label>Cliente</label>
-                    <a href="#">
+                    @if(! $customer)
+                    <a href="{{ route('tickets.requester', ['ticket' => $ticket->id]) }}">
                         <span class="text-xs text-blue-700">Colocar-me como solicitante</span>
                     </a>
+                    @endif
                 </div>
                 <input type="text" class="w-full text-sm rounded border border-gray-300 focus:ring-0 focus:border-gray-300">
+                @if($customer)
+                <div class="mt-2 bg-gray-200 p-3 space-y-1 rounded">
+                    <div class="flex justify-between">
+                        <span>{{ $customer->name }}</span>
+                        <span>
+                            <a href="#">
+                                <i class="fa-solid fa-xmark text-red-700"></i>
+                            </a>
+                        </span>
+                    </div>
+                    <div class="text-sm">{{ $customer->email }}</div>
+                    <div class="text-xs">{{ $customer->phone }}</div>
+                </div>
+                @endif
             </div>
             <div class="flex space-x-2">
                 <div class="w-1/2">

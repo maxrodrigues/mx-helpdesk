@@ -20,6 +20,7 @@ class Ticket extends Model
         'status',
         'priority',
         'user_id',
+        'customer_id',
     ];
 
     protected $casts = [
@@ -35,6 +36,11 @@ class Ticket extends Model
     public function replies(): HasMany
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
     }
 
 }

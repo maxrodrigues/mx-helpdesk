@@ -39,12 +39,13 @@ class TicketController extends Controller
     {
         try {
             $me = auth()->user();
-            $ticket = Ticket::with('user')->find($id);
+            $ticket = Ticket::with(['user', 'customer'])->find($id);
             $agent = $ticket->user;
+            $customer = $ticket->customer;
 
             $replies = Reply::with('user')->where('ticket_id', $ticket->id)->get();
 
-            return view('pages.tickets.edit', compact('ticket', 'replies', 'agent', 'me'));
+            return view('pages.tickets.edit', compact('ticket', 'replies', 'agent', 'me', 'customer'));
         } catch (Exception $e) {
             dd($e->getMessage());
         }
