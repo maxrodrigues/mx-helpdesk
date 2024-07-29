@@ -13,8 +13,7 @@ class TicketController extends Controller
 {
     public function index()
     {
-        $tickets = Ticket::all();
-//        dd(TicketPriorityEnum::URGENT);
+        $tickets = Ticket::with(['user', 'customer'])->paginate(10);
         return view('pages.tickets.index', compact('tickets'));
     }
 

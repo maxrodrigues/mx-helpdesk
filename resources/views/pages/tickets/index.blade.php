@@ -55,8 +55,20 @@
                                 </a>
                             </td>
                             <td class="p-3 text-sm">{{ $ticket->title }}</td>
-                            <td class="p-3 text-sm">...</td>
-                            <td class="p-3 text-sm">...</td>
+                            <td class="p-3 text-sm">
+                                @if($ticket->customer->name)
+                                    {{ $ticket->customer->name }}
+                                @elseif($ticket->customer)
+                                    {{ $ticket->customer->uuid }}
+                                @endif
+                            </td>
+                            <td class="p-3 text-sm">
+                                @if($ticket->user)
+                                    {{ $ticket->user->name }}
+                                @else
+                                    Não atribuido
+                                @endif
+                            </td>
                             <td class="p-3 text-sm">
                                 {{ $ticket->status->name }}
                             </td>
@@ -72,6 +84,9 @@
                     @endforelse
                     </tbody>
                 </table>
+                <div class="px-3 py-2">
+                    {{ $tickets->links() }}
+                </div>
             </div>
         </div>
     </div>
