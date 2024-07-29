@@ -95,7 +95,20 @@
                 </div>
             </div>
             <div class="p-3">
-                Graficos importantes
+                <div class="flex justify-between">
+                    <div class="flex flex-col items-center w-full">
+                        <div class="text-3xl font-semibold">{{ $openTickets['open'] }}</div>
+                        <div class="text-xs text-gray-500">Aberto</div>
+                    </div>
+                    <div class="flex flex-col items-center w-full">
+                        <div class="text-3xl font-semibold">{{ $openTickets['in_progress'] }}</div>
+                        <div class="text-xs text-gray-500">Em andamento</div>
+                    </div>
+                    <div class="flex flex-col items-center w-full">
+                        <div class="text-3xl font-semibold">{{ $openTickets['closed'] }}</div>
+                        <div class="text-xs text-gray-500">Fechados</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -137,18 +150,22 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="p-3 text-center">1</td>
-                        <td class="p-3 text-sm">SM-12771</td>
-                        <td class="p-3 text-sm">Make 'Form #getUsersFields' mo...</td>
-                        <td class="p-3 text-sm">Strich LLC</td>
-                        <td class="p-3 text-sm">06:14:01</td>
-                        <td class="p-3 text-sm">
-                            <button type="button" title="Open details" class="p-1 rounded-full dark:text-gray-400 hover:dark:bg-gray-300 focus:dark:bg-gray-300">
-                                <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current">
-                                    <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"></path>
-                                </svg>
-                            </button>
-                        </td>
+                        @forelse($ticketsUrgentsSla as $ticket)
+                            <td class="p-3 text-center">1</td>
+                            <td class="p-3 text-sm">SM-12771</td>
+                            <td class="p-3 text-sm">Make 'Form #getUsersFields' mo...</td>
+                            <td class="p-3 text-sm">Strich LLC</td>
+                            <td class="p-3 text-sm">06:14:01</td>
+                            <td class="p-3 text-sm">
+                                <button type="button" title="Open details" class="p-1 rounded-full dark:text-gray-400 hover:dark:bg-gray-300 focus:dark:bg-gray-300">
+                                    <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current">
+                                        <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"></path>
+                                    </svg>
+                                </button>
+                            </td>
+                        @empty
+
+                        @endforelse
                     </tr>
                     </tbody>
                 </table>

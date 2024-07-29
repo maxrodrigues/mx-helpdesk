@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 auth()->loginUsingId(1);
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', \App\Http\Controllers\DashboardController::class);
 
 Route::resource('tickets', TicketController::class);
 Route::post('add-reply/{ticket}', AddReplyController::class)->name('ticket.add-reply');
