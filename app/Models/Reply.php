@@ -15,6 +15,7 @@ class Reply extends Model
         'content',
         'ticket_id',
         'user_id',
+        'customer_id'
     ];
 
     public function ticket(): BelongsTo
@@ -25,5 +26,10 @@ class Reply extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
     }
 }
